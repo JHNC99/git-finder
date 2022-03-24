@@ -1,5 +1,5 @@
 import React, {useContext } from "react";
-import GithubContext from "../context/github/GithubContext";
+import GithubContext from "../../context/github/GithubContext";
 import Loading from "../layouts/Loading";
 import UserItems from "../users/UserItems";
 const UserResults = () => {

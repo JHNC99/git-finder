@@ -4,8 +4,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { GithubProvider } from "./components/context/github/GithubContext"
-import { AlertProvider } from './components/context/alert/AlertContext';
+import { GithubProvider } from "./context/github/GithubContext"
+import { AlertProvider } from './context/alert/AlertContext';
 import Alert from './components/layouts/Alert';
 import Navbar from './components/layouts/Navbar'
 import Footer from './components/layouts/Footer'
@@ -27,8 +27,8 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/about" element={<About />} />
-                <Route exact path="/user" element={<User />} />
-                <Route path='*' element={<NotFound />} />
+                <Route exact path="/user/:id" element={<User />} />
+                <Route path='/notfound' element={<NotFound />} />
               </Routes>
             </main>
             <Footer />

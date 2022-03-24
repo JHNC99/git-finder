@@ -41,6 +41,28 @@ export const GithubProvider = ({ children }) => {
         })
     };
 
+    const getUser = async (login) => {
+        setLoading()//mantiene el Loading(true)
+
+        const response = await fetch(`${GITHUB_URL}/users/${login}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `token ${GITHUB_TOKEN}`,
+            },
+        });
+        //Validation response (404)
+        if (response.status === 404) {
+            window.location.assign('/notfound')
+        }
+        else {
+            const data = await response.json();
+            dispatch({
+                type: 'GET_USER',
+                payload: data// se realiza la peticion y se pasa datos al payload y loading=False
+            })
+        }
+    };
+
     //Clear user from state
 
     const clearUsers = () => dispatch({
@@ -60,7 +82,7 @@ export const GithubProvider = ({ children }) => {
         state.loading=> Toma el estado de false
     */
     return <GitHubContext.Provider value={{
-        users: state.users, loading: state.loading, searchUser, clearUsers
+        users: state.users, loading: state.loading, user: state.user, searchUser, clearUsers, getUser
     }}>
         {children}
     </GitHubContext.Provider>

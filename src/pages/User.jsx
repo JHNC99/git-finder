@@ -1,11 +1,11 @@
-import React from "react";
-
+import React, { useEffect, useContext } from "react";
+import GithubContext from "../context/github/GithubContext";
+import { useParams } from "react-router-dom";
 const User = () => {
-  return (
-    <div>
-      <h1>User</h1>
-    </div>
-  );
+  const { id } = useParams();
+  const { getUser, user } = useContext(GithubContext);
+  getUser(id);
+  return <div></div>;
 };
 
 export default User;
